@@ -14,16 +14,12 @@ namespace HRMS_Portal.Controllers
 {
     public class EmployeeOnRequestController : Controller
     {
-        
-        private EmployeeContext _ec { get; }
+
+        private readonly EmployeeContext _ec;
 
         public EmployeeOnRequestController(EmployeeContext ec)
         {
             _ec = ec;
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult OnboardRequest()
@@ -51,6 +47,7 @@ namespace HRMS_Portal.Controllers
                     select depart).ToList();
             dept.Insert(0, new Dept { DeptID = 0, Department = "Select Department" });
             ViewBag.Listofdept = dept;
+
             return View();
         }
 
@@ -64,19 +61,25 @@ namespace HRMS_Portal.Controllers
                      where subdept.DeptID == SDeptID
                      select subdept).ToList();
 
-            sdept.Insert(0, new SDept { SDeptID = 0, SubDepartment = "Select Sub-Department" });
+            sdept.Insert(0, new SDept { SDeptID = 0, SubDepartment = "Select SubDepartment" });
 
             return Json(new SelectList(sdept, "SDeptID", "SubDepartment"));
         }
 
         [HttpPost]
-        public IActionResult OnboardRequest(RequestModel RequestModel)
+        [ValidateAntiForgeryToken]
+        public IActionResult OnboardRequest(RequestModel requestModel)
         {
-            _ec.Add(RequestModel);
-            _ec.SaveChanges();
-            ViewBag.message = "Onboarding Request of" + RequestModel.Firstname + "is created Successfully!!";
 
-            return View(RequestModel); 
+            _ec.tbl_employeedetails.Add(requestModel);
+            _ec.SaveChanges();
+
+            return View();
+        }
+
+        public IActionResult AssignOnBoardReq()
+        {
+            return View();
         }
     }
 }

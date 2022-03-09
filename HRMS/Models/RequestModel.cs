@@ -32,21 +32,23 @@ namespace HRMS.Models
         [Phone]
         public string Mobile { get; set; }
 
-        [DataType(DataType.Date)]
         [Required(ErrorMessage = "*Enter Date of Joining*")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format. It must be in dd/mm/yyyy")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Doj { get; set; }
 
         [Required(ErrorMessage = "*Enter Business Unit*")]
+        [ForeignKey("BUnitID")]
         [Display(Name ="Business Unit")]
         public int BUnitID { get; set; }
 
         [Required(ErrorMessage = "*Enter Department*")]
+        [ForeignKey("DeptID")]
         [Display(Name = "Department")]
         public int DeptID { get; set; }
 
         [Required(ErrorMessage = "*Enter SubDepartment*")]
+        [ForeignKey("SDeptID")]
         [Display(Name = "SubDepartment")]
         public int SDeptID { get; set; }
 
@@ -54,6 +56,7 @@ namespace HRMS.Models
         public string Designation { get; set; }
 
         [Required(ErrorMessage = "*Enter Reporting Manager*")]
+        [ForeignKey("RMID")]
         [Display(Name = "Reporting Manager")]
         public int RMID { get; set; }
 
