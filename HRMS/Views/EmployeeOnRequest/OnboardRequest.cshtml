@@ -16,18 +16,18 @@
     </nav>
     <br />
     <div>
-        <form method="post" asp-action="OnboardRequest">
+        <form method="post" data-ajax="true" data-ajax-complete="CompleteRequest" asp-action="OnboardRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-6">
                         <label asp-for="Firstname" class="control-label"></label>
-                        <input asp-for="Firstname" class="form-control" />
-                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                        <input asp-for="Firstname" id="fname" class="form-control" />
+                        <span asp-validation-for="Firstname" id="errfname" class="text-danger"></span>
                     </div>
                     <div class="col-6">
-                        <label asp-for="Businessunit" class="control-label"></label>
-                        <select asp-for="BUnitID"
+                        <label asp-for="BUnitID" class="control-label"></label>
+                        <select asp-for="BUnitID" id="bunit"
                                 class="form-control"
                                 asp-items="@(new SelectList(ViewBag.Listofbunit, "BUnitID", "Businessunit"))">
                         </select>
@@ -38,11 +38,11 @@
                 <div class="row">
                     <div class="col-6">
                         <label asp-for="Lastname" class="control-label"></label>
-                        <input asp-for="Lastname" class="form-control" />
-                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                        <input asp-for="Lastname" id="lname" class="form-control" />
+                        <span asp-validation-for="Lastname" id="errlname" class="text-danger"></span>
                     </div>
                     <div class="col-6">
-                        <label asp-for="Department" class="control-label"></label>
+                        <label asp-for="DeptID" class="control-label"></label>
                         <select asp-for="DeptID" id="DeptID" name="DeptID" class="form-control"
                                 asp-items="@(new SelectList(ViewBag.Listofdept, "DeptID", "Department"))">
                         </select>
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-6">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" id="email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="col-6">
@@ -68,13 +68,13 @@
                 <div class="row">
                     <div class="col-6">
                         <label asp-for="Mobile" class="control-label"></label>
-                        <input asp-for="Mobile" class="form-control" />
-                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                        <input asp-for="Mobile" id="mobile" class="form-control" />
+                        <span asp-validation-for="Mobile" id="errmobile" class="text-danger"></span>
                     </div>
                     <div class="col-6">
                         <label asp-for="Designation" class="control-label"></label>
-                        <input asp-for="Designation" class="form-control" />
-                        <span asp-validation-for="Designation" class="text-danger"></span>
+                        <input asp-for="Designation" id="designation" class="form-control" />
+                        <span asp-validation-for="Designation" id="errdesignation" class="text-danger"></span>
                     </div>
                 </div>
                 <br />
@@ -82,12 +82,12 @@
                     <div class="col-6">
                         <label asp-for="Doj" class="control-label"></label>
                         <input type="text" id="Doj" name="Doj" class="datepicker form-control" />
+
                         <span asp-validation-for="Doj" class="text-danger"></span>
                     </div>
                     <div class="col-6">
-                        <label asp-for="ReportingManager" class="control-label"></label>
-                        <select asp-for="RMID"
-                                class="form-control"
+                        <label asp-for="RMID" class="control-label"></label>
+                        <select asp-for="RMID" id="rm" class="form-control"
                                 asp-items="@(new SelectList(ViewBag.Listofrm, "RMID", "ReportingManager"))">
                         </select>
                         <span asp-validation-for="RMID" class="text-danger"></span>
@@ -98,10 +98,11 @@
                     <div class="col-8">
                     </div>
                     <div class="col-4">
-                        <button type="submit" class="form-control" value="submit"> Continue </button>
+                        <button type="submit" id="btn1" class="form-control" value="submit" onclick="btn_continue"> Continue </button>
                     </div>
                 </div>
             </div>
+            @ViewBag.message
         </form>
     </div>
 </div>
@@ -131,6 +132,77 @@
 
         $(function () {
             $('.datepicker').datepicker();
+        });
+
+        //Validation for Mobile, textbox.
+        $(function () {
+            $("#mobile").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+ 
+                $("#errmobile").html("");
+ 
+                //Regex for Valid Characters i.e. Numbers.
+                var regex = /^[0-9]+$/;
+ 
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#errmobile").html("Only Numbers allowed.");
+                }
+ 
+                return isValid;
+            });
+
+            $("#fname").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+ 
+                $("#errfname").html("");
+ 
+                //Regex for Valid Characters i.e. Alphabets.
+                var regex = /^[A-Za-z]+$/;
+ 
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#errfname").html("Only Letters allowed.");
+                }
+ 
+                return isValid;
+            });
+
+            $("#lname").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+ 
+                $("#errlname").html("");
+ 
+                //Regex for Valid Characters i.e. Alphabets.
+                var regex = /^[A-Za-z]+$/;
+ 
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#errlname").html("Only Letters allowed.");
+                }
+ 
+                return isValid;
+            });
+
+            $("#designation").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+ 
+                $("#errdesignation").html("");
+ 
+                //Regex for Valid Characters i.e. Alphabets.
+                var regex = /^[A-Za-z0-9]+$/;
+ 
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#errdesignation").html("Only Letters and Numbers allowed.");
+                }
+ 
+                return isValid;
+            });
         });
     </script>
 

@@ -14,45 +14,46 @@ namespace HRMS.Models
         [Key]
         public int EmpID { get; set; }
 
-        [Required(ErrorMessage ="Enter Firstname!!")]
+        [Required(ErrorMessage ="*Enter Firstname*")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed!!")]
         public string Firstname { get; set; }
 
-        [Required(ErrorMessage = "Enter Lastname")]
+        [Required(ErrorMessage = "*Enter Lastname*")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are allowed!!")]
         public string Lastname { get; set; }
 
-        [Required(ErrorMessage = "Enter Email Address")]
+        [Required(ErrorMessage = "*Enter Email Address*")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Enter Mobile No.")]
+        [Required(ErrorMessage = "*Enter Mobile No.*")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
         [DataType(DataType.PhoneNumber)]
+        [Phone]
         public string Mobile { get; set; }
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Enter Date of Joining")]
-        //[DisplayFormat(DataFormatString = "{0:DD/mm/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "*Enter Date of Joining*")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [RegularExpression(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$", ErrorMessage = "Invalid date format. It must be in dd/mm/yyyy")]
         public DateTime Doj { get; set; }
 
-        [Required(ErrorMessage = "Enter Business Unit")]
+        [Required(ErrorMessage = "*Enter Business Unit*")]
         [Display(Name ="Business Unit")]
         public int BUnitID { get; set; }
 
-        [Required(ErrorMessage = "Enter Department")]
+        [Required(ErrorMessage = "*Enter Department*")]
         [Display(Name = "Department")]
         public int DeptID { get; set; }
 
-        [Required(ErrorMessage = "Enter Sub-Department")]
-        [Display(Name = "Sub-Department")]
+        [Required(ErrorMessage = "*Enter SubDepartment*")]
+        [Display(Name = "SubDepartment")]
         public int SDeptID { get; set; }
 
-        [Required(ErrorMessage = "Enter Designation")]
+        [Required(ErrorMessage = "*Enter Designation*")]
         public string Designation { get; set; }
 
-        [Required(ErrorMessage = "Enter Reporting Manager")]
+        [Required(ErrorMessage = "*Enter Reporting Manager*")]
         [Display(Name = "Reporting Manager")]
         public int RMID { get; set; }
 
@@ -66,7 +67,6 @@ namespace HRMS.Models
 
         [NotMapped]
         [Required(ErrorMessage = "Enter Sub-Department")]
-        [Display(Name = "Sub-Department")]
         public string SubDepartment { get; set; }
 
         [NotMapped]
