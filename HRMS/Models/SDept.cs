@@ -17,6 +17,7 @@ namespace HRMS_Portal.Models
         [Required(ErrorMessage = "Enter Sub-Department")]
         public string SubDepartment { get; set; }
 
+        [Required(ErrorMessage = "Enter Department")]
         public int DeptID { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "OnboardRequest";
+    ViewData["Title"] = "Create Onboarding Request";
 }
 
 <div class="container">
@@ -110,7 +110,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            var sdept = "<option value='0'>Select Sub-Department</option>";
+            var sdept = "<option value='0'>Select SubDepartment</option>";
             $('#SDeptID').html(sdept);
         });
 
@@ -129,40 +129,35 @@
             });
         });
 
-        //$(function () {
-        //    $('.datepicker').datepicker();
-        //});
-
         jQuery(document).ready(function () {  
             jQuery("body").on("click", "#btn1", function () {
-            var requestModel = {};
+                var requestModel = {};
            
-            RequestModel.Firstname   = jQuery('#fname').val();  
-            RequestModel.Lastname = jQuery('#lname').val();
-            RequestModel.Email   = jQuery('#email').val();  
-            RequestModel.Mobile = jQuery('#mobile').val();
-            RequestModel.Doj   = jQuery('#Doj').val();  
-            RequestModel.BUnitID = jQuery('#bunit').val();
-            RequestModel.DeptID   = jQuery('#DeptID').val();  
-            RequestModel.SDeptID = jQuery('#SDeptID').val();
-            RequestModel.Designation = jQuery('#designstion').val();
-            RequestModel.RMID = jQuery('#rm').val();
+                RequestModel.Firstname   = jQuery('#fname').val();  
+                RequestModel.Lastname = jQuery('#lname').val();
+                RequestModel.Email   = jQuery('#email').val();  
+                RequestModel.Mobile = jQuery('#mobile').val();
+                RequestModel.Doj   = jQuery('#Doj').val();  
+                RequestModel.BUnitID = jQuery('#bunit').val();
+                RequestModel.DeptID   = jQuery('#DeptID').val();  
+                RequestModel.SDeptID = jQuery('#SDeptID').val();
+                RequestModel.Designation = jQuery('#designstion').val();
+                RequestModel.RMID = jQuery('#rm').val();
 
-            jQuery.ajax({  
-                url: 'EmployeeOnRequest/OnboardRequest',  
-                method: 'post',  
-                data:   JSON.stringify(requestModel),  
-                contentType: "application/json; charset=utf-8",  
-                dataType: "json",  
-                success: function () {    
-                    console.log(data);  
-                },  
-            });
-
-        })
+                jQuery.ajax({  
+                    url: 'EmployeeOnRequest/OnboardRequest',  
+                    method: 'post',  
+                    data:   JSON.stringify(requestModel),  
+                    contentType: "application/json; charset=utf-8",  
+                    dataType: "json",  
+                    success: function () {    
+                        console.log(data);  
+                    },  
+                });
+            })
         });
 
-        //****************Validation for Mobile, textbox.*******************
+        //**************** Validation for input fields to block Special Chars and Number *******************
         $(function () {
             $("#mobile").keypress(function (e) {
                 var keyCode = e.keyCode || e.which;

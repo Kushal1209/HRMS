@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace HRMS_Portal.Models
 {
-    public class ListofTaskModel
+    public class AssignTaskModel
     {
         
     }
