@@ -3,8 +3,8 @@
     ViewData["Title"] = "Create Onboarding Request";
 }
 
-<div class="container">
-    <nav class="navbar navbar-light">
+<div class="container mt-4">
+    <nav class="navbar navbar-light" style="border: 1px solid black;"   >
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#fff" cursor="pointer" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
@@ -13,8 +13,7 @@
         </div>
         <span class="navbar-brand mb-0 m-auto h1">Onboarding Request</span>
     </nav>
-    <br />
-    <div>
+    <div class="container-fluid" style="border: 1px solid black;">
         <form method="post" data-ajax="true" asp-action="OnboardRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -109,6 +108,7 @@
 
     <script type="text/javascript">
 
+        // Get SubDepartment dropdown list JS //
         $(document).ready(function () {
             var sdept = "<option value='0'>Select SubDepartment</option>";
             $('#SDeptID').html(sdept);
@@ -129,20 +129,21 @@
             });
         });
 
+        // jQuery-Ajax call to insert data to database //
         jQuery(document).ready(function () {  
             jQuery("body").on("click", "#btn1", function () {
                 var requestModel = {};
-           
-                RequestModel.Firstname   = jQuery('#fname').val();  
-                RequestModel.Lastname = jQuery('#lname').val();
-                RequestModel.Email   = jQuery('#email').val();  
-                RequestModel.Mobile = jQuery('#mobile').val();
-                RequestModel.Doj   = jQuery('#Doj').val();  
-                RequestModel.BUnitID = jQuery('#bunit').val();
-                RequestModel.DeptID   = jQuery('#DeptID').val();  
-                RequestModel.SDeptID = jQuery('#SDeptID').val();
-                RequestModel.Designation = jQuery('#designstion').val();
-                RequestModel.RMID = jQuery('#rm').val();
+            
+                requestModel.Firstname   = jQuery('#fname').val();  
+                requestModel.Lastname = jQuery('#lname').val();
+                requestModel.Email   = jQuery('#email').val();  
+                requestModel.Mobile = jQuery('#mobile').val();
+                requestModel.Doj   = jQuery('#Doj').val();  
+                requestModel.BUnitID = jQuery('#bunit').val();
+                requestModel.DeptID   = jQuery('#DeptID').val();  
+                requestModel.SDeptID = jQuery('#SDeptID').val();
+                requestModel.Designation = jQuery('#designstion').val();
+                requestModel.RMID = jQuery('#rm').val();
 
                 jQuery.ajax({  
                     url: 'EmployeeOnRequest/OnboardRequest',  
@@ -157,7 +158,7 @@
             })
         });
 
-        //**************** Validation for input fields to block Special Chars and Number *******************
+        // **************** Validation for input fields to block Special Chars and Number ******************* //
         $(function () {
             $("#mobile").keypress(function (e) {
                 var keyCode = e.keyCode || e.which;

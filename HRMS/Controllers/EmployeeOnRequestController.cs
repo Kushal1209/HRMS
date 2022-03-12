@@ -40,7 +40,7 @@ namespace HRMS_Portal.Controllers
             rm.Insert(0, new RM { RMID = 0, ReportingManager = "Select Reporting Manager" });
             ViewBag.Listofrm = rm;
 
-            //----- Department and Sub-Department List ----- //
+            //----- Department List ----- //
 
             List<Dept> dept = new List<Dept>();
             dept = (from depart in _ec.tbl_dept
@@ -51,7 +51,7 @@ namespace HRMS_Portal.Controllers
             return View();
         }
 
-        //----- Department and Sub-Department List ----- //
+        //----- SubDepartment List ----- //
 
         public JsonResult GETSubDept(int SDeptID)
         {
