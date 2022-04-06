@@ -55,24 +55,37 @@ namespace HRMS_Portal.Controllers
 
         public JsonResult GETSubDept(int SDeptID)
         {
-            List<SDept> sdept = new List<SDept>();
+            try
+            {
+                List<SDept> sdept = new List<SDept>();
 
-            sdept = (from subdept in _ec.tbl_sdept
-                     where subdept.DeptID == SDeptID
-                     select subdept).ToList();
+                sdept = (from subdept in _ec.tbl_sdept
+                         where subdept.DeptID == SDeptID
+                         select subdept).ToList();
 
-            sdept.Insert(0, new SDept { SDeptID = 0, SubDepartment = "Select SubDepartment" });
+                sdept.Insert(0, new SDept { SDeptID = 0, SubDepartment = "Select SubDepartment" });
 
-            return Json(new SelectList(sdept, "SDeptID", "SubDepartment"));
+                return Json(new SelectList(sdept, "SDeptID", "SubDepartment"));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult OnboardRequest(RequestModel requestModel)
         {
-
-            _ec.tbl_employeedetails.Add(requestModel);
-            _ec.SaveChanges();
+            try
+            {
+                _ec.tbl_employeedetails.Add(requestModel);
+                _ec.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return View();
         }
@@ -80,6 +93,23 @@ namespace HRMS_Portal.Controllers
         public IActionResult AssignOnBoardReq()
         {
             return View();
+        }
+
+        public async Task<IActionResult> AddNewTask(int id=0)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+            else
+            {
+                var assigntaskmodel = await _ec.tbl_assigntask.FindAsync(id);
+                if (assigntaskmodel == null)
+                {
+                    return NotFound();
+                }
+                return View(assigntaskmodel);
+            }   
         }
     }
 }

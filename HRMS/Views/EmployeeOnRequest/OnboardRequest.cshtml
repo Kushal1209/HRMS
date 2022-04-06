@@ -94,7 +94,7 @@
                     <div class="col-8">
                     </div>
                     <div class="col-4">
-                        <button type="submit" id="btn1" class="form-control" value="submit"> Continue </button>
+                        <button type="submit" id="btn1" class="form-control" value="submit" asp-action="AssignOnBoardReq" onclick="btn_continue"> Continue </button>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,6 @@
 @section Scripts {
      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-
     <script type="text/javascript">
 
         // Get SubDepartment dropdown list JS //
@@ -115,6 +114,7 @@
         });
 
         $(document).ready(function () {
+            
             $('#DeptID').change(function () {
                 var url = '@Url.Content("~/")' + "EmployeeOnRequest/GETSubDept";
                 var ddlsource = "#DeptID";
@@ -122,7 +122,7 @@
                     var sdept = '';
                     $("#SDeptID").empty();
                     $.each(data, function (i, subdept) {
-                        sdept += "<option value" + subdept.value + "'>" + subdept.text + "</options>";
+                        sdept += "<option value=" + subdept.value + "'>" + subdept.text + "</options>";
                     });
                     $('#SDeptID').html(sdept);
                 });
@@ -130,35 +130,57 @@
         });
 
         // jQuery-Ajax call to insert data to database //
-        jQuery(document).ready(function () {  
-            jQuery("body").on("click", "#btn1", function () {
-                var requestModel = {};
-            
-                requestModel.Firstname   = jQuery('#fname').val();  
-                requestModel.Lastname = jQuery('#lname').val();
-                requestModel.Email   = jQuery('#email').val();  
-                requestModel.Mobile = jQuery('#mobile').val();
-                requestModel.Doj   = jQuery('#Doj').val();  
-                requestModel.BUnitID = jQuery('#bunit').val();
-                requestModel.DeptID   = jQuery('#DeptID').val();  
-                requestModel.SDeptID = jQuery('#SDeptID').val();
-                requestModel.Designation = jQuery('#designstion').val();
-                requestModel.RMID = jQuery('#rm').val();
 
-                jQuery.ajax({  
-                    url: 'EmployeeOnRequest/OnboardRequest',  
-                    method: 'post',  
-                    data:   JSON.stringify(requestModel),  
-                    contentType: "application/json; charset=utf-8",  
-                    dataType: "json",  
-                    success: function () {    
-                        console.log(data);  
-                    },  
+        //jQuery(document).ready(function () {  
+        //    jQuery("body").on("click", "#btn1", function () {
+        //        var requestModel = {};
+            
+        //        requestModel.Firstname   = jQuery('#fname').val();  
+        //        requestModel.Lastname = jQuery('#lname').val();
+        //        requestModel.Email   = jQuery('#email').val();  
+        //        requestModel.Mobile = jQuery('#mobile').val();
+        //        requestModel.Doj   = jQuery('#Doj').val();  
+        //        requestModel.BUnitID = jQuery('#bunit').val();
+        //        requestModel.DeptID   = jQuery('#DeptID').val();  
+        //        requestModel.SDeptID = jQuery('#SDeptID').val();
+        //        requestModel.Designation = jQuery('#designstion').val();
+        //        requestModel.RMID = jQuery('#rm').val();
+
+        //        jQuery.ajax({  
+        //            url: 'EmployeeOnRequest/OnboardRequest',  
+        //            method: 'post',  
+        //            data:   JSON.stringify(requestModel),  
+        //            contentType: "application/json; charset=utf-8",  
+        //            dataType: "json",  
+        //            success: function () {    
+        //                console.log(data);  
+        //            },  
+        //        });
+        //    })
+        //});
+
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "EmployeeOnRequest/OnboardRequest",
+                    data: {
+                        FirstName: $("#fname").val(),
+                        LastName: $("#lname").val(),
+                        Email: jQuery('#email').val(),
+                        Mobile: jQuery('#mobile').val(),
+                        Doj: jQuery('#Doj').val(),
+                        BUnitID: jQuery('#bunit').val(),
+                        DeptID: jQuery('#DeptID').val(),
+                        SDeptID: jQuery('#SDeptID').val(),
+                        Designation: jQuery('#designstion').val(),
+                        RMID: jQuery('#rm').val()
+                    }
                 });
-            })
+            });
         });
 
-        // **************** Validation for input fields to block Special Chars and Number ******************* //
+        // ***************** Validation for input fields to block Special Chars and Number ******************* //
         $(function () {
             $("#mobile").keypress(function (e) {
                 var keyCode = e.keyCode || e.which;

@@ -26,6 +26,12 @@ namespace HRMS_Portal.Models
 
         public DbSet<SDept> tbl_sdept { get; set; }
 
+        public DbSet<AssignTaskModel> tbl_assigntask { get; set; }
+
+        public DbSet<Assignee> tbl_assignee { get; set; }
+
+        public DbSet<ListofTask> tbl_task { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
