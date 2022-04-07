@@ -10,27 +10,27 @@
         <form asp-action="AddNewTask">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="EmpID" class="control-label"></label>
-                        <input asp-for="EmpID" class="form-control" />
-                        <span asp-validation-for="EmpID" class="text-danger"></span>
+                        <label asp-for="TaskName" class="control-label"></label>
+                        <input asp-for="TaskName" class="form-control" />
+                        <span asp-validation-for="TaskName" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-md-6">
+                @*<div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="TaskID" class="control-label"></label>
-                        <input asp-for="TaskID" class="form-control" />
-                        <span asp-validation-for="TaskID" class="text-danger"></span>
+                        <label asp-for="TaskName" class="control-label"></label>
+                        <input asp-for="TaskName" class="form-control" />
+                        <span asp-validation-for="TaskName" class="text-danger"></span>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="AssigneeID" class="control-label"></label>
-                        <input asp-for="AssigneeID" class="form-control" />
-                        <span asp-validation-for="AssigneeID" class="text-danger"></span>
+                        <label asp-for="AssigneeName" class="control-label"></label>
+                        <input asp-for="AssigneeName" class="form-control" />
+                        <span asp-validation-for="AssigneeName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
