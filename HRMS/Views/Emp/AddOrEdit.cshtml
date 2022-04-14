@@ -1,0 +1,56 @@
+﻿@model HRMS.Models.AssignOnBoardReq
+
+@{
+    ViewData["Title"] = "Add New Task";
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.AssignTaskID" onsubmit="return JQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AssignTaskID" />
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="TaskName" class="control-label"></label>
+                        @*<input asp-for="TaskName" class="form-control" />*@@*onchange="GetDueDate(TaskID)"*@
+                         <select asp-for="TaskID" id="TaskName" class="form-control"
+                                asp-items="@(new SelectList(ViewBag.Listoftask, "TaskID", "TaskName"))">
+                        </select>
+                        <span asp-validation-for="TaskID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="AssigneeName" class="control-label"></label>
+                        <select asp-for="AssigneeID" id="assignee" class="form-control"
+                                asp-items="@(new SelectList(ViewBag.Listofassign, "AssigneeID", "AssigneeName"))">
+                        </select>
+                        <span asp-validation-for="AssigneeID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @*@{
+                            var dueDate = @Model.DueDate;*@
+                        <label asp-for="DueDate" class="control-label"></label>
+                        <input type="date" asp-for="DueDate" id="DueDate" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                        @*<input type="date" value="@dueDate" class="form-control"/>*@
+                        <span asp-validation-for="DueDate" class="text-danger"></span>
+                        @*}*@
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

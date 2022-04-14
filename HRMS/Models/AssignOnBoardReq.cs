@@ -1,47 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data;
-using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
-using HRMS.Models;
-using HRMS_Portal.Models;
-using System.Configuration;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRMS.Models
 {
-    public class AssignTaskModel
+    public class AssignOnBoardReq
     {
         [Key]
         public int AssignTaskID { get; set; }
 
-        [Required]
-        [ForeignKey("EmpID")]
-        public int EmpID { get; set; }
-
-        [Required]
+        [Required(ErrorMessage = "Enter Task")]
         [ForeignKey("TaskID")]
         public int TaskID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Select Assignee")]
         [ForeignKey("AssigneeID")]
         public int AssigneeID { get; set; }
 
-        [NotMapped]
-        [Required(ErrorMessage ="Enter Due Date")]
+        [Required(ErrorMessage = "Enter Due Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DueDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter Task")]
         [NotMapped]
-        [Display(Name = "Name")]
+        [Display(Name = "Task Name")]
         public string TaskName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter Assignee")]
         [NotMapped]
         [Display(Name = "Assignee")]
         public string AssigneeName { get; set; }

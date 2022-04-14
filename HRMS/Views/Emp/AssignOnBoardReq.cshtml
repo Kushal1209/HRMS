@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HRMS.Models.AssignOnBoardReq>
+
+@{
+    ViewData["Title"] = "Assign OnBoarding Request";
+}
+
+<div class="container mt-4">
+    <nav class="navbar navbar-light"  style="border: 1px solid black;">
+        <div>
+            @*<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#fff" cursor="pointer" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg>*@
+            <i class="bi bi-arrow-left-circle" style="color:#fff; width:22px; height:22px; cursor:pointer;"></i>
+        </div>
+        <span class="navbar-brand mb-0 m-auto h1">Onboarding Request (Onboarded By: )</span>
+    </nav>
+    <div class="container-fluid" style="border: 1px solid black;">
+        <div class="row" style="height: 50px; font-size: 14px; text-transform: uppercase;">
+            <div class="col-2 align-self-center">
+                <b>Doj:</b>
+            </div>
+            <div class="col-2 align-self-center">
+                <b>Rm:</b>
+            </div>
+            <div class="col align-self-center">
+                <span class="mb-0 m-5 h4"> <b> Employee Details </b> </span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="border: 1px solid black;">
+        <div class="row" style="height: 50px; font-size: 14px; text-transform: uppercase;">
+            <div class="col-3 align-self-center">
+                <b>Name:</b>
+            </div>
+            <div class="col-3 align-self-center">
+                <b>Mobile Number:</b>
+            </div>
+            <div class="col-3 align-self-center">
+                <b>Business Unit:</b>    
+            </div>
+            <div class="col-3 align-self-center">
+                <b>SubDepartment:</b>    
+            </div>
+            <div class="col-3 align-self-center">
+                <b>Email Address:</b>
+            </div>
+            <div class="col-3 align-self-center">
+                <b>Designation:</b>
+            </div>
+            <div class="col-3 align-self-center">
+                <b>Departmant:</b>    
+            </div>
+        </div>
+    </div>
+    <div id="view-all">
+        @await Html.PartialAsync("_ViewAll", Model)
+    </div>
+</div>   
+       

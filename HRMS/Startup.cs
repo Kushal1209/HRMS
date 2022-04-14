@@ -1,4 +1,5 @@
-using HRMS_Portal.Models;
+using HRMS.Data;
+using HRMS.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,8 @@ namespace HRMS
         {
             services.AddSession();
             services.AddControllersWithViews();
-            services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("appConn")));
+            services.AddDbContext<EmpDbContext>(options => 
+                    options.UseSqlServer(Configuration.GetConnectionString("appConn")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +48,7 @@ namespace HRMS
                 app.UseHsts();
             }
 
-            //env.ConfigureNLog("Nlog.config");
+            //env.ConfigureNLog("nlog.config");
             //loggerFactory.AddNLog();
 
             app.UseHttpsRedirection();

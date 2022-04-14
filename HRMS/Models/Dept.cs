@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace HRMS_Portal.Models
+namespace HRMS.Models
 {
     public class Dept
     {

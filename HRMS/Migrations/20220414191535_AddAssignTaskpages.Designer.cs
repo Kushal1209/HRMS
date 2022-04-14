@@ -4,14 +4,16 @@ using HRMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HRMS_Portal.Migrations
 {
     [DbContext(typeof(EmpDbContext))]
-    partial class EmployeeContextModelSnapshot : ModelSnapshot
+    [Migration("20220414191535_AddAssignTaskpages")]
+    partial class AddAssignTaskpages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

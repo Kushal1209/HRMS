@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HRMS.Models.AssignOnBoardReq>
+
+<div class="container-fluid" style="border: 1px solid black;">
+        <div class="row" style="height: 40px; font-size: 14px;">
+            <div class="align-self-center">
+                @*<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-funnel mb-0 m-1" viewBox="0 0 16 16">
+                  <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                </svg>*@
+                <a><i class="bi bi-funnel"></i></a>
+            </div>
+            <div class="col-2 align-self-center">
+                <select class="form-select">
+                  <option selected>Filter by status</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-2 align-self-center">
+                <select class="form-select">
+                  <option selected>All</option>
+                  <option value="1">Oneeeeeeeeeeeee</option>
+                  <option value="2">Twooooooooooooo</option>
+                  <option value="3">Threeeeeeeeeeee</option>
+                </select>
+            </div>
+            <div class="align-self-center m-2">
+                <a onclick="ShowInPopup('@Url.Action("AddOrEdit","Emp",null,Context.Request.Scheme)','Add New Task')" style="color: blue; cursor: pointer;">+ New Task</a>
+            </div>
+            <div class="align-self-center m-1 p-1">
+                <span class="badge rounded-pill bg-secondary" style="height: 22px; width: 22px; line-height: 2;">0</span>
+            </div>
+            <div class="align-self-center m-1 p-1">
+                <span class="badge rounded-pill bg-danger" style="height: 22px; width: 22px; line-height: 2;">0</span>
+            </div>
+            <div class="align-self-center m-1 p-1">
+                <span class="badge rounded-pill bg-warning text-dark" style="height: 22px; width: 22px; line-height: 2;">0</span>
+            </div>
+            <div class="align-self-center m-1 p-1">
+                <span class="badge rounded-pill bg-success" style="height: 22px; width: 22px; line-height: 2;">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="border: 1px solid black;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-6">
+                        @Html.DisplayNameFor(model => model.TaskName)
+                    </th>
+                    <th class="col-md-2">
+                        @Html.DisplayNameFor(model => model.AssigneeName)
+                    </th>
+                    <th class="col-md-2">
+                        @Html.DisplayNameFor(model => model.DueDate)
+                    </th>
+                    <th class="col-md-2">
+                        Actions
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="col-md-6">
+                            @Html.DisplayFor(modelItem => item.TaskName)
+                        </td>
+                        <td class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.AssigneeName)
+                        </td>
+                        <td class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.DueDate)
+                        </td>
+                        <td class="col-md-2">
+                            <a onclick="ShowInPopup('@Url.Action("AddOrEdit","Emp",new {id = item.AssignTaskID},Context.Request.Scheme)','Edit Task')"><i class="bi bi-pencil" style="cursor: pointer;"></i></a> |
+                            <form asp-action="Delete" asp-route-id="@item.AssignTaskID" onsubmit="return JQueryAjaxDelete(this);" class="d-inline">
+                                <button type="submit" style="border:none; outline:none; background:none;"><i class="bi bi-trash3"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

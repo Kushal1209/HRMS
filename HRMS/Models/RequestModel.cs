@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using HRMS_Portal.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HRMS.Models
@@ -60,20 +59,20 @@ namespace HRMS.Models
         [Display(Name = "Reporting Manager")]
         public int RMID { get; set; }
 
-        [NotMapped]
         [Required(ErrorMessage = "Enter Business Unit")]
+        [NotMapped]
         public string Businessunit { get; set; }
 
-        [NotMapped]
         [Required(ErrorMessage = "Enter Department")]
+        [NotMapped]
         public string Department { get; set; }
 
-        [NotMapped]
         [Required(ErrorMessage = "Enter Sub-Department")]
+        [NotMapped]
         public string SubDepartment { get; set; }
 
-        [NotMapped]
         [Required(ErrorMessage = "Enter Reporting Manager")]
+        [NotMapped]
         public string ReportingManager { get; set; }
     }
 }
