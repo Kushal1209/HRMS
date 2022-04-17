@@ -5,18 +5,19 @@
 
 
 //$(function () {
-//    $("#mosaic-loader").addClass('hide');
+//    $("#loaderbody").addClass('hide');
 
 //    $(document).bind('ajaxStart', function () {
-//        $("#mosaic-loader").removeClass('hide');
+//        $("#loaderbody").removeClass('hide');
 //    }).bind('ajaxStop', function () {
-//        $("#mosaic-loader").addClass('hide');
+//        $("#loaderbody").addClass('hide');
 //    });
 //});
 
+
 ShowInPopup = (url, title) => {
     $.ajax({
-        type: "GET",
+        type: 'GET',
         url: url,
         success: function (res) {
             $("#form-modal .modal-body").html(res);
@@ -29,7 +30,7 @@ ShowInPopup = (url, title) => {
 JQueryAjaxPost = form => {
     try {
         $.ajax({
-            type: "POST",
+            type: 'POST',
             url: form.action,
             data: new FormData(form),
             contentType: false,
@@ -40,7 +41,7 @@ JQueryAjaxPost = form => {
                     $("#form-modal .modal-body").html('');
                     $("#form-modal .modal-title").html('');
                     $("#form-modal").modal('hide');
-                    $.notify('Task Added!!', { globalPosition: 'top center', className: 'success' })
+                    $.notify('Task Added!!', { globalPosition: 'top center', className: 'success' });
                 }
                 else
                     $("#form-modal .modal-body").html(res.html);
@@ -62,14 +63,14 @@ JQueryAjaxDelete = form => {
     if (confirm('Are you sure to delete this task?')) {
         try {
             $.ajax({
-                type: "POST",
+                type: 'POST',
                 url: form.action,
                 data: new FormData(form),
                 contentType: false,
                 processData: false,
                 success: function (res) {
                     $("#view-all").html(res.html);
-                    $.notify('Task Deleted!!', { globalPosition: 'top center', className: 'success' })
+                    $.notify('Task Deleted!!', { globalPosition: 'top center', className: 'success' });
                 },
                 error: function (err) {
                     console.log(err);

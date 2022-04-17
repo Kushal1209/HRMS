@@ -73,10 +73,16 @@
                             @Html.DisplayFor(modelItem => item.DueDate)
                         </td>
                         <td class="col-md-2">
-                            <a onclick="ShowInPopup('@Url.Action("AddOrEdit","Emp",new {id = item.AssignTaskID},Context.Request.Scheme)','Edit Task')"><i class="bi bi-pencil" style="cursor: pointer;"></i></a> |
-                            <form asp-action="Delete" asp-route-id="@item.AssignTaskID" onsubmit="return JQueryAjaxDelete(this);" class="d-inline">
-                                <button type="submit" style="border:none; outline:none; background:none;"><i class="bi bi-trash3"></i></button>
-                            </form>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <a onclick="ShowInPopup('@Url.Action("AddOrEdit","Emp",new {id = item.AssignTaskID},Context.Request.Scheme)','Edit Task')"><i class="bi bi-pencil" style="cursor: pointer;"></i></a>
+                                </div>
+                                <div class="col-md-1">
+                                    <form asp-action="Delete" asp-route-id="@item.AssignTaskID" onsubmit="return JQueryAjaxDelete(this);" class="d-inline">
+                                        <button type="submit" style="border:none; outline:none; background:none;"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 }

@@ -160,14 +160,14 @@ namespace HRMS.Controllers
             //{
             if (id == 0)
             {
-                _context.Add(assignOnBoardReq);
+                _context.tbl_assignonboardreq.Add(assignOnBoardReq);
                 await _context.SaveChangesAsync();
             }
             else
             {
                 try
                 {
-                    _context.Update(assignOnBoardReq);
+                    _context.tbl_assignonboardreq.Update(assignOnBoardReq);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
