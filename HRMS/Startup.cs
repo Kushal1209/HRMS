@@ -1,18 +1,12 @@
 using HRMS.Data;
-using HRMS.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HRMS
 {
@@ -48,14 +42,13 @@ namespace HRMS
                 app.UseHsts();
             }
 
-            //env.ConfigureNLog("nlog.config");
+            //env.ConfigureNLog("Nlog.config");
             //loggerFactory.AddNLog();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
