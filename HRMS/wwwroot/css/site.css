@@ -30,6 +30,7 @@ html {
     font-size: 14px;
 }
 
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -65,8 +66,26 @@ body {
     margin-bottom: 60px;
 }
 
+.row .fa-search {
+    position: absolute;
+    top: 8px;
+    left: 25px;
+    color: #9ca3af
+}
+
+.form-input {
+    height: 30px;
+    width: 250px;
+    text-indent: 30px;
+    border-radius: 5px;
+}
+
+.form-select {
+    height: 30px;
+    border-radius: 5px;
+}
 /* Loader */
-/*.loaderbody {
+.loaderbody {
     width: 100%;
     height: 100%;
     left: 0px;
@@ -95,9 +114,8 @@ body {
     100%{
         transform: rotate(360deg);
     }
-}*/
-
-/*.loader,
+}
+.loader,
 .loader:before,
 .loader:after {
     border-radius: 50%;
@@ -157,9 +175,7 @@ body {
     40% {
         box-shadow: 0 2.5em 0 0;
     }
-}*/
-
-
+}
 .footer {
     position: absolute;
     bottom: 0;

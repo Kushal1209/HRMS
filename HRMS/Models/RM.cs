@@ -10,10 +10,8 @@ namespace HRMS.Models
     public class RM
     {
         [Key]
-        [Required(ErrorMessage = "Enter Reporting Manager")]
         public int RMID { get; set; }
 
-        [Required(ErrorMessage = "Enter Reporting Manager")]
         public string ReportingManager { get; set; }
     }
 }

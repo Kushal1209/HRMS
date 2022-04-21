@@ -11,10 +11,8 @@ namespace HRMS.Models
     public class BUnit
     {
         [Key]
-        [Required(ErrorMessage = "Enter Business Unit")]
         public int BUnitID { get; set; }
 
-        [Required(ErrorMessage = "Enter Business Unit")]
         public string Businessunit { get; set; }
     }
 }

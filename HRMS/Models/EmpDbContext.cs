@@ -25,6 +25,8 @@ namespace HRMS.Data
 
         public DbSet<HRMS.Models.Tasks> tbl_tasks { get; set; }
 
+        public DbSet<HRMS.Models.ListOfOnboardingEmp> tbl_listofemp { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

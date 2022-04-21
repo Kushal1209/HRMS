@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HRMS.Models
 {
@@ -36,17 +32,17 @@ namespace HRMS.Models
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Doj { get; set; }
 
-        [Required(ErrorMessage = "*Enter Business Unit*")]
+        //[Required(ErrorMessage = "*Enter Business Unit*")]
         [ForeignKey("BUnitID")]
         [Display(Name ="Business Unit")]
         public int BUnitID { get; set; }
 
-        [Required(ErrorMessage = "*Enter Department*")]
+        //[Required(ErrorMessage = "*Enter Department*")]
         [ForeignKey("DeptID")]
         [Display(Name = "Department")]
         public int DeptID { get; set; }
 
-        [Required(ErrorMessage = "*Enter SubDepartment*")]
+        //[Required(ErrorMessage = "*Enter SubDepartment*")]
         [ForeignKey("SDeptID")]
         [Display(Name = "SubDepartment")]
         public int SDeptID { get; set; }
@@ -54,24 +50,24 @@ namespace HRMS.Models
         [Required(ErrorMessage = "*Enter Designation*")]
         public string Designation { get; set; }
 
-        [Required(ErrorMessage = "*Enter Reporting Manager*")]
+        //[Required(ErrorMessage = "*Enter Reporting Manager*")]
         [ForeignKey("RMID")]
         [Display(Name = "Reporting Manager")]
         public int RMID { get; set; }
 
-        [Required(ErrorMessage = "Enter Business Unit")]
+        //[Required(ErrorMessage = "Enter Business Unit")]
         [NotMapped]
         public string Businessunit { get; set; }
 
-        [Required(ErrorMessage = "Enter Department")]
+        //[Required(ErrorMessage = "Enter Department")]
         [NotMapped]
         public string Department { get; set; }
 
-        [Required(ErrorMessage = "Enter Sub-Department")]
+        //[Required(ErrorMessage = "Enter Sub-Department")]
         [NotMapped]
         public string SubDepartment { get; set; }
 
-        [Required(ErrorMessage = "Enter Reporting Manager")]
+        //[Required(ErrorMessage = "Enter Reporting Manager")]
         [NotMapped]
         public string ReportingManager { get; set; }
     }

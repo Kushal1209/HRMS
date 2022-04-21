@@ -14,7 +14,6 @@
 //    });
 //});
 
-
 ShowInPopup = (url, title) => {
     $.ajax({
         type: 'GET',
@@ -49,7 +48,7 @@ JQueryAjaxPost = form => {
             error: function (err) {
                 console.log(err);
             }
-        })
+        });
     }
     catch (e) {
         console.log(e);
@@ -75,7 +74,7 @@ JQueryAjaxDelete = form => {
                 error: function (err) {
                     console.log(err);
                 }
-            })
+            });
         } catch (e) {
             console.log(e);
         }

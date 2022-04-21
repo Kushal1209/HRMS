@@ -1,0 +1,80 @@
+﻿@model IEnumerable<HRMS.Models.ListOfOnboardingEmp>
+
+@{
+    ViewData["Title"] = "List of OnBoarded Employees";
+}
+
+<div class="container mt-4">
+     <nav class="navbar navbar-light"  style="border: 1px solid black;">
+        <span class="navbar-brand mb-0 m-auto h1">List of OnBoarding Employees</span>
+    </nav>
+    <div class="container-fluid" style="border: 1px solid black;">
+        <div class="row" style="height: 50px; font-size: 15px;">
+            <div class="col-3 align-self-center">
+                <i class="fas fa-search "></i><input type="text" class="form-input" placeholder="Search" />
+            </div>
+            <div class="col-3 align-self-center">
+                <select class="form-select">
+                    <option selected>All Status</option>
+                    <option value="1">Oneeeeeeeeeeeeeeeeeeeeee</option>
+                    <option value="2">Twoooooooooooooooooooooo</option>
+                    <option value="3">Threeeeeeeeeeeeeeeeeeeee</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="border: 1px solid black;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Firstname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BUnitID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedByID)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Firstname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BUnitID)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedByID)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ListofEmpID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ListofEmpID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ListofEmpID">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

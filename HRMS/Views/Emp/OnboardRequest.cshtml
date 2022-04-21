@@ -15,7 +15,7 @@
         <span class="navbar-brand mb-0 m-auto h1">Onboarding Request</span>
     </nav>
     <div class="container-fluid" style="border: 1px solid black;">
-        <form method="post" data-ajax="true" asp-action="OnboardRequest">
+        <form method="post" id="formdata" asp-action="OnboardRequest">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="row">
@@ -95,7 +95,7 @@
                     <div class="col-8">
                     </div>
                     <div class="col-4">
-                        <button type="submit" id="btn1" class="form-control" value="submit" asp-action="AssignOnBoardReq" onclick="btn_continue"> Continue </button>
+                        <button type="submit" id="btn_submit" class="form-control" value="submit"> Continue </button>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,6 @@
             var sdept = "<option value='0'>Select SubDepartment</option>";
             $('#SDeptID').html(sdept);
         });
-
         $(document).ready(function () {
             
             $('#DeptID').change(function () {
@@ -131,55 +130,27 @@
         });
 
         // jQuery-Ajax call to insert data to database //
+        //$(document).ready(function() {
+        //    $("#btn_submit").click(function() {
+        //        //$("#loaderbody").show().delay(5000).fadeOut();
+        //        var data = $("#formdata").serialize();
 
-        //jQuery(document).ready(function () {  
-        //    jQuery("body").on("click", "#btn1", function () {
-        //        var requestModel = {};
-            
-        //        requestModel.Firstname   = jQuery('#fname').val();  
-        //        requestModel.Lastname = jQuery('#lname').val();
-        //        requestModel.Email   = jQuery('#email').val();  
-        //        requestModel.Mobile = jQuery('#mobile').val();
-        //        requestModel.Doj   = jQuery('#Doj').val();  
-        //        requestModel.BUnitID = jQuery('#bunit').val();
-        //        requestModel.DeptID   = jQuery('#DeptID').val();  
-        //        requestModel.SDeptID = jQuery('#SDeptID').val();
-        //        requestModel.Designation = jQuery('#designstion').val();
-        //        requestModel.RMID = jQuery('#rm').val();
-
-        //        jQuery.ajax({  
-        //            url: 'EmployeeOnRequest/OnboardRequest',  
-        //            method: 'post',  
-        //            data:   JSON.stringify(requestModel),  
-        //            contentType: "application/json; charset=utf-8",  
-        //            dataType: "json",  
-        //            success: function () {    
-        //                console.log(data);  
-        //            },  
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Emp/OnboardRequest',
+        //            data: data,
+        //            success: function(res){
+        //                //$("#loaderbody").hide();
+        //                $.notify('Request Created!!', { globalPosition: 'top center', className: 'success' });
+        //                //window.location.href = '/Emp/AssignOnBoardReq';
+        //            },
+        //            error: function(err){
+        //                //$("#loaderbody").hide();
+        //                $.notify('Error occured while Creating Request', { globalPosition: 'top center', className: 'danger' });
+        //            }
         //        });
-        //    })
+        //    });
         //});
-
-        $(document).ready(function () {
-            $("#btn1").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "EmployeeOnRequest/OnboardRequest",
-                    data: {
-                        FirstName: $("#fname").val(),
-                        LastName: $("#lname").val(),
-                        Email: jQuery('#email').val(),
-                        Mobile: jQuery('#mobile').val(),
-                        Doj: jQuery('#Doj').val(),
-                        BUnitID: jQuery('#bunit').val(),
-                        DeptID: jQuery('#DeptID').val(),
-                        SDeptID: jQuery('#SDeptID').val(),
-                        Designation: jQuery('#designstion').val(),
-                        RMID: jQuery('#rm').val()
-                    }
-                });
-            });
-        });
 
         // ***************** Validation for input fields to block Special Chars and Number ******************* //
         $(function () {
@@ -187,9 +158,7 @@
                 var keyCode = e.keyCode || e.which;
  
                 $("#errmobile").html("");
-
                 var regex = /^[0-9]+$/;
-
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     $("#errmobile").html("Only Numbers allowed.");
@@ -202,9 +171,7 @@
                 var keyCode = e.keyCode || e.which;
  
                 $("#errfname").html("");
-
                 var regex = /^[A-Za-z]+$/;
-
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     $("#errfname").html("Only Letters allowed.");
@@ -217,9 +184,7 @@
                 var keyCode = e.keyCode || e.which;
  
                 $("#errlname").html("");
-
                 var regex = /^[A-Za-z]+$/;
-
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     $("#errlname").html("Only Letters allowed.");
@@ -227,14 +192,11 @@
  
                 return isValid;
             });
-
             $("#designation").keypress(function (e) {
                 var keyCode = e.keyCode || e.which;
  
                 $("#errdesignation").html("");
-
                 var regex = /^[A-Za-z0-9]+$/;
-
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     $("#errdesignation").html("Only Letters and Numbers allowed.");

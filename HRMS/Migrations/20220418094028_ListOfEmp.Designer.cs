@@ -4,14 +4,16 @@ using HRMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HRMS_Portal.Migrations
 {
     [DbContext(typeof(EmpDbContext))]
-    partial class EmployeeContextModelSnapshot : ModelSnapshot
+    [Migration("20220418094028_ListOfEmp")]
+    partial class ListOfEmp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace HRMS_Portal.Migrations
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EmpID")
-                        .HasColumnType("int");
 
                     b.Property<int>("TaskID")
                         .HasColumnType("int");
@@ -67,6 +66,7 @@ namespace HRMS_Portal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Businessunit")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BUnitID");
@@ -82,6 +82,7 @@ namespace HRMS_Portal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Department")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DeptID");
@@ -115,6 +116,7 @@ namespace HRMS_Portal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ReportingManager")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RMID");
@@ -180,6 +182,7 @@ namespace HRMS_Portal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SubDepartment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SDeptID");

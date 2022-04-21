@@ -8,7 +8,6 @@
     <div class="col-md-12">
         <form asp-action="AddOrEdit" asp-route-id="@Model.AssignTaskID" onsubmit="return JQueryAjaxPost(this);" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AssignTaskID" />
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">

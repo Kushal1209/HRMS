@@ -9,6 +9,9 @@ namespace HRMS.Models
         [Key]
         public int AssignTaskID { get; set; }
 
+        [ForeignKey("EmpID")]
+        public int EmpID { get; set; }
+
         [Required(ErrorMessage = "Enter Task")]
         [ForeignKey("TaskID")]
         public int TaskID { get; set; }

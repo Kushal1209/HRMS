@@ -11,10 +11,8 @@ namespace HRMS.Models
     public class Dept
     {
         [Key]
-        [Required(ErrorMessage = "Enter Department")]
         public int DeptID { get; set; }
 
-        [Required(ErrorMessage = "Enter Department")]
         public string Department { get; set; }
 
         [NotMapped]

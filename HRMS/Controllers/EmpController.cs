@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HRMS.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using HRMS.Data;
 
 namespace HRMS.Controllers
@@ -67,7 +65,7 @@ namespace HRMS.Controllers
 
                 return Json(new SelectList(sdept, "SDeptID", "SubDepartment"));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -79,17 +77,17 @@ namespace HRMS.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                try
-                {
-                    _context.tbl_employeedetails.Add(requestModel);
-                    _context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+            try
+            {
+                _context.tbl_employeedetails.Add(requestModel);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             //}
-            return View();
+            return RedirectToAction(nameof(AssignOnBoardReq));
         }
 
         // GET: Emp
@@ -107,6 +105,7 @@ namespace HRMS.Controllers
                                         AssigneeName = am.AssigneeName,
                                         DueDate = asd.DueDate
                                     }).ToList();
+
             //return View(assignOnBoardReq);
 
             return View(await _context.tbl_assignonboardreq.ToListAsync());
